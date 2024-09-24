@@ -1,12 +1,14 @@
 import express from "express";
 
+import cors from 'cors';
+
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 const app = express();
 app.use(express.json());
-
+app.use(cors());
 app.get("/users", async (req, res) => {
   let users = [];
   if (req.query) {
@@ -54,15 +56,3 @@ app.delete("/users/delete/:id", async (req, res) => {
 });
 
 app.listen(3000);
-
-/* 
-  Criar api de usuários 
-
-  - Criar usuário
-
-  - Listar todos os Usuários
-
-  - Editar um Usuário
-
-  - Deletar um Usuário
-*/
